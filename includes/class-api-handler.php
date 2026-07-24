@@ -390,31 +390,57 @@ class WP_AI_Auto_Blogger_API_Handler {
                 return new WP_Error( 'missing_key', 'Gemini APIキーが設定されていません。' );
             }
 
-            $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key={$api_key}";
-            $headers = array( 'Content-Type' => 'application/json' );
-            $body = array(
-                'contents' => array(
-                    array(
-                        'parts' => array(
-                            array( 'text' => $image_prompt )
-                        )
+            // 初回モデル: gemini-3.1-flash-image
+            $models_to_try = array( 'gemini-3.1-flash-image', 'imagen-3.0-generate-002' );
+            $gemini_success = false;
+
+            foreach ( $models_to_try as $g_model ) {
+                $url = "https://generativelanguage.googleapis.com/v1beta/models/{$g_model}:generateContent?key={$api_key}";
+                $headers = array( 'Content-Type' => 'application/json' );
+                $body = array(
+                    'contents' => array(
+                        array( 'parts' => array( array( 'text' => $image_prompt ) ) )
                     )
-                )
-            );
+                );
 
-            $data = $this->execute_api_request( $url, $headers, $body, 'Gemini 3.1 Flash Image' );
-            if ( is_wp_error( $data ) ) return $data;
-
-            if ( isset( $data['candidates'][0]['content']['parts'] ) ) {
-                foreach ( $data['candidates'][0]['content']['parts'] as $part ) {
-                    if ( isset( $part['inlineData']['data'] ) ) {
-                        $image_data = base64_decode( $part['inlineData']['data'] );
-                        $upload = wp_upload_bits( 'gemini_flash_' . time() . '.png', null, $image_data );
-                        if ( ! $upload['error'] ) {
-                            $local_file_path = $upload['file']; // Save local path to avoid loopback
-                            $image_url = $upload['url'];
+                $data = $this->execute_api_request( $url, $headers, $body, "Gemini Image ({$g_model})" );
+                if ( ! is_wp_error( $data ) && isset( $data['candidates'][0]['content']['parts'] ) ) {
+                    foreach ( $data['candidates'][0]['content']['parts'] as $part ) {
+                        if ( isset( $part['inlineData']['data'] ) ) {
+                            $image_data = base64_decode( $part['inlineData']['data'] );
+                            $upload = wp_upload_bits( 'gemini_flash_' . time() . '.png', null, $image_data );
+                            if ( ! $upload['error'] ) {
+                                $local_file_path = $upload['file'];
+                                $image_url = $upload['url'];
+                                $gemini_success = true;
+                            }
+                            break;
                         }
-                        break;
+                    }
+                }
+                if ( $gemini_success ) break;
+                sleep( 2 ); // 次のフォールバックまで短いスリープ
+            }
+
+            // Geminiが高負荷で全滅し、かつOpenAIキーが登録されている場合は gpt-image-2 に自動フォールバック
+            if ( ! $gemini_success ) {
+                $openai_key = get_option( 'wp_ai_auto_blogger_openai_key' );
+                if ( ! empty( $openai_key ) ) {
+                    $url = 'https://api.openai.com/v1/images/generations';
+                    $headers = array(
+                        'Content-Type'  => 'application/json',
+                        'Authorization' => 'Bearer ' . $openai_key
+                    );
+                    $body = array(
+                        'model'  => 'gpt-image-2',
+                        'prompt' => $image_prompt,
+                        'n'      => 1,
+                        'size'   => '1024x1024'
+                    );
+
+                    $data = $this->execute_api_request( $url, $headers, $body, 'gpt-image-2 (Fallback)' );
+                    if ( ! is_wp_error( $data ) && isset( $data['data'][0]['url'] ) ) {
+                        $image_url = $data['data'][0]['url'];
                     }
                 }
             }
