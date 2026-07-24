@@ -1,0 +1,20 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Helper & Setup Scripts
+setup_github.sh
+
+# IDE / Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Dependencies
+node_modules/
+vendor/
