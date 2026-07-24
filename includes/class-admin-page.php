@@ -107,25 +107,25 @@ class WP_AI_Auto_Blogger_Admin_Page {
                             <th scope="row"><label for="ai_model">AIモデル選択</label></th>
                             <td>
                                 <select id="ai_model" name="ai_model">
-                                    <optgroup label="Google Gemini (最新3.x/2.5世代)">
-                                        <option value="gemini-3.5-flash">Gemini 3.5 Flash (最新・高速・高コストパフォーマンス)</option>
-                                        <option value="gemini-3.1-pro">Gemini 3.1 Pro (現行フラッグシップ・高度な推論)</option>
-                                        <option value="gemini-3.1-flash-lite">Gemini 3.1 Flash-Lite (最軽量・超高速)</option>
-                                        <option value="gemini-2.5-flash">Gemini 2.5 Flash (実績のある従来モデル)</option>
+                                    <optgroup label="Google Gemini (最新3.6/3.5世代)">
+                                        <option value="gemini-3.6-flash">Gemini 3.6 Flash (最新GA・主力ワークホース・トークン効率最高)</option>
+                                        <option value="gemini-3.5-flash-lite">Gemini 3.5 Flash-Lite (最新GA・超低レイテンシ・高頻度向け)</option>
+                                        <option value="gemini-3.1-pro">Gemini 3.1 Pro (高度な推論・長文構成)</option>
                                     </optgroup>
-                                    <optgroup label="OpenAI GPT (最新5.x/4o世代)">
-                                        <option value="gpt-5.6-sol">GPT-5.6 Sol (Preview版・最新フラッグシップ)</option>
-                                        <option value="gpt-5.6-terra">GPT-5.6 Terra (Preview版・バランス)</option>
-                                        <option value="gpt-5.6-luna">GPT-5.6 Luna (Preview版・高速・低コスト)</option>
-                                        <option value="gpt-5.5-pro">GPT-5.5 Pro (一般利用可能な最高性能)</option>
+                                    <optgroup label="OpenAI GPT (最新5.6/5.5世代)">
+                                        <option value="gpt-5.6">GPT-5.6 (最新フラッグシップ・最高峰の表現力)</option>
+                                        <option value="gpt-5.6-terra">GPT-5.6 Terra (バランス・高コストパフォーマンス)</option>
+                                        <option value="gpt-5.6-luna">GPT-5.6 Luna (超高速・低コスト)</option>
+                                        <option value="gpt-5.6-sol">GPT-5.6 Sol (Preview版・高度マルチモーダル/計画立案)</option>
+                                        <option value="gpt-5.5-pro">GPT-5.5 Pro (一般利用可能な安定モデル)</option>
                                         <option value="gpt-5.5-instant">GPT-5.5 Instant (高速・日常タスク用)</option>
-                                        <option value="gpt-4o">GPT-4o (従来モデル)</option>
                                     </optgroup>
-                                    <optgroup label="Anthropic Claude (最新4.x世代)">
-                                        <option value="claude-4.8-opus">Claude Opus 4.8 (現行最強・高度な推論)</option>
-                                        <option value="claude-4.6-sonnet">Claude Sonnet 4.6 (バランス・実運用向け)</option>
-                                        <option value="claude-4.5-haiku">Claude Haiku 4.5 (高速・低コスト)</option>
-                                        <option value="claude-5-fable" disabled>Claude Fable 5 (一時利用停止中)</option>
+                                    <optgroup label="Anthropic Claude (最新5.x/4.x世代)">
+                                        <option value="claude-sonnet-5">Claude Sonnet 5 (最新フラッグシップ・エージェント/文章構成特化)</option>
+                                        <option value="claude-fable-5">Claude Fable 5 (最上位汎用モデル・高度分析)</option>
+                                        <option value="claude-4.8-opus">Claude 4.8 Opus (高度な推論・熟考型)</option>
+                                        <option value="claude-4.6-sonnet">Claude 4.6 Sonnet (安定実運用向け)</option>
+                                        <option value="claude-4.5-haiku">Claude 4.5 Haiku (高速・低コスト)</option>
                                     </optgroup>
                                 </select>
                             </td>

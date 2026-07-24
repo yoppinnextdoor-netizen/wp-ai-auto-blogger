@@ -38,10 +38,10 @@ WordPress管理画面の専用メニューから、以下の設定を行って�
     *   **ターゲット層** (履歴補完対応)
     *   **記事に含めたい内容・メモ** (フリーテキスト)
     *   **アイキャッチ画像生成オプション** (チェックボックス)
-*   **対応モデル**:
-    *   **Google Gemini**: Gemini 3.5 Flash, Gemini 3.1 Pro, Gemini 3.1 Flash-Lite, Gemini 2.5 Flash
-    *   **OpenAI GPT**: GPT-5.6 Sol / Terra / Luna (Preview), GPT-5.5 Pro / Instant, GPT-4o
-    *   **Anthropic Claude**: Claude 4.8 Opus, Claude 4.6 Sonnet, Claude 4.5 Haiku
+*   **対応モデル (2026年7月最新仕様)**:
+    *   **Google Gemini**: Gemini 3.6 Flash (最新GA), Gemini 3.5 Flash-Lite (最新GA), Gemini 3.1 Pro
+    *   **OpenAI GPT**: GPT-5.6, GPT-5.6 Terra, GPT-5.6 Luna, GPT-5.6 Sol (Preview), GPT-5.5 Pro, GPT-5.5 Instant
+    *   **Anthropic Claude**: Claude Sonnet 5, Claude Fable 5, Claude 4.8 Opus, Claude 4.6 Sonnet, Claude 4.5 Haiku
 
 ### 3.2. 履歴記憶（クイックタグ）機能
 「業種」と「ターゲット層」に入力した内容は、過去20件分までデータベース（`wp_options`）に自動保存されます。

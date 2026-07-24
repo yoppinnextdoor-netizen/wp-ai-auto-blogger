@@ -10,10 +10,10 @@
 
 ## 🌟 主な特徴
 
-- 🤖 **マルチAIモデル対応**:
-  - **Google Gemini**: Gemini 3.5 Flash, 3.1 Pro, 3.1 Flash-Lite, 2.5 Flash
-  - **OpenAI GPT**: GPT-5.6 Sol/Terra/Luna, GPT-5.5 Pro/Instant, GPT-4o
-  - **Anthropic Claude**: Claude 4.8 Opus, 4.6 Sonnet, 4.5 Haiku
+- 🤖 **マルチAIモデル対応 (2026年7月最新ラインナップ)**:
+  - **Google Gemini**: Gemini 3.6 Flash (最新GA・主力), Gemini 3.5 Flash-Lite, Gemini 3.1 Pro
+  - **OpenAI GPT**: GPT-5.6 (フラッグシップ), GPT-5.6 Terra, GPT-5.6 Luna, GPT-5.6 Sol (Preview), GPT-5.5 Pro, GPT-5.5 Instant
+  - **Anthropic Claude**: Claude Sonnet 5 (最新エージェント/文章構成モデル), Claude Fable 5, Claude 4.8 Opus, Claude 4.6 Sonnet, Claude 4.5 Haiku
 - 🎨 **アイキャッチ画像の自動生成**:
   - 本文からAIが英語プロンプトを考案し、`gpt-image-2` や `gemini-3.1-flash-image` で画像を自動生成。メディアライブラリへ直接登録・アイキャッチ設定。
 - 🔗 **英語パーマリンク（スラッグ）自動設定**:
